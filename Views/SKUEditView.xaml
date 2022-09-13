@@ -1,0 +1,38 @@
+﻿<Window x:Class="Capstone.SKUEditView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Capstone"
+        mc:Ignorable="d" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Canvas Height="650" Width="450">
+        <TextBlock Name="WindowTitle" Text="Place Holder Text" Canvas.Left="25" Canvas.Top="25" FontSize="25" />
+
+        <StackPanel Name="Form" Canvas.Top="65" Canvas.Left="25" Width="400">
+            <TextBlock Text="SKU" FontSize="20" />
+            <TextBlock Name="ProdSKU" Text="{Binding ID, StringFormat=D7}" FontSize="15" />
+            <TextBlock Text="Name" FontSize="20" />
+            <TextBox Name="ProdName" Text="{Binding Name}" FontSize="15" />
+            <TextBlock Text="Description" FontSize="20" />
+            <TextBox Name="ProdDescription" Text="{Binding Description}" FontSize="15" Height="50"/>
+            <TextBlock Text="UPC" FontSize="20" />
+                <TextBox Name="ProdUPC" Text="{Binding UPC}" FontSize="15" PreviewTextInput="Numeric_PreviewTextInput" MaxLength="10" />
+                <TextBlock Text="Manufacturer" FontSize="20" />
+                <TextBox Name="ProdManufacturer" Text="{Binding Manufacturer}" FontSize="15" />
+                <TextBlock Text="Cost" FontSize="20" />
+                <TextBox Name="ProdCost" Text="{Binding Cost, StringFormat=F2}" FontSize="15" PreviewTextInput="Currency_PreviewTextInput" />
+                <TextBlock Text="Price" FontSize="20" />
+            <TextBox Name="ProdPrice" Text="{Binding Price, StringFormat=F2}" FontSize="15" PreviewTextInput="Currency_PreviewTextInput" />
+            <TextBlock Text="Minimum Stock Level" FontSize="20" />
+            <TextBox Name="ProdMin" Text="{Binding Min}" FontSize="15" PreviewTextInput="Numeric_PreviewTextInput" />
+            <TextBlock Text="Maximum Stock Level" FontSize="20" />
+            <TextBox Name="ProdMax" Text="{Binding Max}" FontSize="15" PreviewTextInput="Numeric_PreviewTextInput" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Canvas.Bottom="15" Canvas.Right="15">
+            <Button Name="Save" Content="Save" Padding="5,0" Margin="0,0,15,0" Click="Save_Click"/>
+            <Button Name="Cancel" Content="Cancel" Padding="5,0" Click="Cancel_Click" />
+        </StackPanel>
+        
+    </Canvas>
+</Window>

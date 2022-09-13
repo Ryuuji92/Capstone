@@ -1,0 +1,43 @@
+﻿<Window x:Class="Capstone.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Capstone"
+        mc:Ignorable="d"
+        Title="Inventory Management System" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Canvas Height="440" Width="815">
+        <TextBlock Text="Inventory Management System" Canvas.Top="25" Canvas.Left="25" FontSize="25" />
+        <StackPanel Orientation="Horizontal" Canvas.Top="65" Canvas.Left="25" Width="750">
+            <Button Name="Products" Content="View Products Without SKUs" Width="240" Padding="5,0" Margin="0,0,15,0" Click="Products_Click" />
+            <Button Name="SlowReport" Content="Slow Movers Report" Width="240" Padding="5,0" Margin="0,0,15,0" Click="SlowReport_Click" />
+            <Button Name="NegativeReport" Content="Negative Inventory Report" Width="240" Padding="5,0" Click="NegativeReport_Click" />
+        </StackPanel>
+        <Canvas Height="320" Width="750" Canvas.Bottom="25" Canvas.Right="25" Canvas.Left="25" Canvas.Top="88" >
+            <TextBlock Text="Inventory" FontSize="15" />
+            <StackPanel Orientation="Horizontal" Canvas.Right="0">
+                <Button Name="SearchButton" Content="Search" IsEnabled="{Binding ElementName=SearchBox, Path=Text.Length}" Padding="5,0" Margin="5,0" Click="SearchButton_Click" />
+                <TextBox Name="SearchBox" KeyUp="SearchBox_KeyUp" Width="250" />
+            </StackPanel>
+            <DataGrid Name="SKUTable" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HeadersVisibility="Column" IsReadOnly="True" SelectionMode="Single" Canvas.Top="23" Width="750" Height="275" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="UPC" Binding="{Binding UPC}" Width="*" />
+                    <DataGridTextColumn Header="SKU" Binding="{Binding ID, StringFormat=D7}"  Width="*" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"  Width="*" />
+                    <DataGridTextColumn Header="Inventory" Binding="{Binding Count}" Width="*" />
+                    <DataGridTextColumn Header="Min" Binding="{Binding Min}" Width="*" />
+                    <DataGridTextColumn Header="Max" Binding="{Binding Max}" Width="*" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=F2}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Canvas.Bottom="0" Canvas.Right="0" Orientation="Horizontal">
+                <Button Name="AddSKU" Content="Add New SKU" Width="95" Padding="5,0" Click="AddSKU_Click" />
+                <Button Name="Adjust" Content="Adjust Stock" Width="95" Padding="5,0" Margin="5,0,0,0" IsEnabled="{Binding ElementName=SKUTable, Path=SelectedItems.Count}" Click="Adjust_Click"/>
+                <Button Name="Details" Content="Details" Width="95" Padding="5,0" Margin="5,0,0,0" IsEnabled="{Binding ElementName=SKUTable, Path=SelectedItems.Count}" Click="Details_Click" />
+                <Button Name="Delete" Content="Delete" Width="95" Padding="5,0" Margin="5,0,0,0" IsEnabled="{Binding ElementName=SKUTable, Path=SelectedItems.Count}" Click="Delete_Click" />
+            </StackPanel>
+        </Canvas>
+
+    </Canvas>
+</Window>
